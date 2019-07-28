@@ -5,23 +5,38 @@ export class Employee{
   
   constructor(
     public id:string,
-    public name:string,
+    public firstNameme:string,
     public designation:string,
     public salary:string
-  ){}
-}
+    ){}
+  }
+  
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class HttpClientService {
+    
+  basePath:string = 'http://localhost:8080/employees';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class HttpClientService {
-
-  constructor(
-    private httpClient:HttpClient
-  ) { }
+  constructor(private httpClient:HttpClient) { 
+  }
 
   getEmployees(){
+
     console.log("Chamando a api")
-    return this.httpClient.get<Employee[]>('http://localhost:8080/employees') 
+    return this.httpClient.get<Employee[]>(this.basePath); 
   }
+
+  public delete(employee){
+    return this.httpClient.delete(this.basePath + '/' + employee.id);
+  }
+
+  public create(employee){
+    return this.httpClient.post<Employee>(this.basePath, employee);
+  }
+
+  public update(employee){
+    return this.httpClient.put<Employee>(this.basePath, employee);
+  }
+
 }

@@ -1,4 +1,4 @@
-import { HttpClientService } from './../service/http-client.service';
+import { HttpClientService, Employee } from './../service/http-client.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,11 +15,21 @@ export class EmployeeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.httpClientService.getEmployees().subscribe(response => this.handleSuccessfulResponse(response),)
+    this.httpClientService.getEmployees().subscribe(
+      response => this.handleSuccessfulResponse(response),);
   }
 
   handleSuccessfulResponse(response){
     this.employees=response;
+  }
+
+  delete(employee:Employee):void{
+
+    this.httpClientService.delete(employee).subscribe(
+        data => {
+          this.employees = this.employees.filter(u => u !== employee.id);
+          alert('Employee removed');
+        });
   }
 
 }
