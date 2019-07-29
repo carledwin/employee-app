@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AddEmployeeComponent implements OnInit {
 
-  employee: Employee = new Employee("", "", "", "");
+  employee: Employee = new Employee("", "", "", "", "");
 
   constructor(private httpClientService: HttpClientService, private router: Router) { 
   }
@@ -20,7 +20,7 @@ export class AddEmployeeComponent implements OnInit {
   create(): void{
     this.httpClientService.create(this.employee).subscribe(
       data => {
-        this.router.navigate(['employees'])
+        this.router.navigate(['/'])
       }
     );
   }

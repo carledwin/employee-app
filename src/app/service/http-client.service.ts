@@ -6,6 +6,7 @@ export class Employee{
   constructor(
     public id:string,
     public firstNameme:string,
+    public email:string,
     public designation:string,
     public salary:string
     ){}
@@ -16,27 +17,24 @@ export class Employee{
   })
   export class HttpClientService {
     
-  basePath:string = 'http://localhost:8080/employees';
+  static basePath:string = 'http://localhost:8080/employees';
 
   constructor(private httpClient:HttpClient) { 
   }
 
   getEmployees(){
-
-    console.log("Chamando a api")
-    return this.httpClient.get<Employee[]>(this.basePath); 
+   return this.httpClient.get<Employee[]>(HttpClientService.basePath); 
   }
 
   public delete(employee){
-    return this.httpClient.delete(this.basePath + '/' + employee.id);
+    return this.httpClient.delete(HttpClientService.basePath + '/' + employee.id);
   }
 
   public create(employee){
-    return this.httpClient.post<Employee>(this.basePath, employee);
+    return this.httpClient.post<Employee>(HttpClientService.basePath, employee);
   }
 
   public update(employee){
-    return this.httpClient.put<Employee>(this.basePath, employee);
+    return this.httpClient.put<Employee>(HttpClientService.basePath, employee);
   }
-
 }

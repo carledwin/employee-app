@@ -30,7 +30,7 @@ export class EmployeeComponent implements OnInit {
           
           this.httpClientService.getEmployees().subscribe(
             response => this.handleSuccessfulResponse(response),);
-          this.router.navigate(['/employees'])
+          this.router.navigate(['/'])
         });
       }
 

@@ -8,12 +8,11 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  {path: 'employees', component: EmployeeComponent, canActivate: [AuthGaurdService]},
+  {path: '', component: EmployeeComponent, canActivate: [AuthGaurdService]},
   {path: 'add', component: AddEmployeeComponent, canActivate: [AuthGaurdService]},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent, canActivate: [AuthGaurdService]},
-  {path: '', component: AppComponent, canActivate: [AuthGaurdService]}
-];
+ ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

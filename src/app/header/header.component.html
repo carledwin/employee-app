@@ -7,10 +7,7 @@
     </div>
     <ul class="navbar-nav">
       <li>
-        <a routerLink="/" class="nav-link">Home</a>
-      </li>
-      <li>
-        <a *ngIf="authenticationService.isUserLoggedIn()" routerLink="/employees" class="nav-link">View Employees</a>
+        <a *ngIf="authenticationService.isUserLoggedIn()" routerLink="/" class="nav-link">View Employees</a>
       </li>
       <li>
         <a *ngIf="authenticationService.isUserLoggedIn()" routerLink="/add" class="nav-link">Add a New Employee</a>
